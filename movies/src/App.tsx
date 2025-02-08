@@ -1,10 +1,12 @@
 import "./App.css";
+import Navigation from "./components/Navigation";
+import HomePage from "./pages/HomePage";
 
 function App() {
   return (
     <>
-      <h1 className="text-sky-600">Movies</h1>
-      <h3>Movie Streaming Platform</h3>
+      <Navigation />
+      <HomePage />
     </>
   );
 }
