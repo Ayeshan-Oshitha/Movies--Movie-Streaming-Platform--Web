@@ -1,6 +1,8 @@
-import React from "react";
+import React, { MouseEventHandler } from "react";
+import { useNavigate } from "react-router-dom";
 
 interface Props {
+  id: number;
   title: string;
   poster_path: string;
   vote_average: number;
@@ -8,7 +10,13 @@ interface Props {
   original_language: string;
 }
 
-const DiscoverMovieCard = ({ title, poster_path, vote_average, release_date, original_language }: Props) => {
+const DiscoverMovieCard = ({ id, title, poster_path, vote_average, release_date, original_language }: Props) => {
+  const navigate = useNavigate();
+
+  const handleClick = (movieId: number) => {
+    navigate(`/movies/${movieId}`);
+  };
+
   return (
     <>
       <div className=" bg-white border border-gray-200 rounded-2xl shadow-xl h-[600px] w-[400px] flex flex-col ">
@@ -23,7 +31,10 @@ const DiscoverMovieCard = ({ title, poster_path, vote_average, release_date, ori
           <p className="text-base text-white bg-sky-400 w-16 text-center px-1 py-1 rounded-lg">{original_language}</p>
           <p className="text-base text-white bg-yellow-400 w-16 text-center px-1 py-1 rounded-lg">{vote_average}</p>
         </div>
-        <button className="bg-gray-700 text-white text-xl mx-5  h-12 mt-7 px-5 font-medium rounded-lg hover:bg-sky-800">
+        <button
+          className="bg-gray-700 text-white text-xl mx-5  h-12 mt-7 px-5 font-medium rounded-lg hover:bg-sky-800"
+          onClick={() => handleClick(id)}
+        >
           View Details
         </button>
       </div>

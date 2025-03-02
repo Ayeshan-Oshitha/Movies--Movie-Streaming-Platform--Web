@@ -1,11 +1,11 @@
 import React, { useEffect, useRef, useState } from "react";
-import { moviesModel } from "../models/movies";
-import { fetchDiscoverMovies } from "../services/HomePageServices";
+import { DiscoverMovieModel } from "../models/movies";
+import { fetchDiscoverMovies } from "../services/TMdbServices";
 import DiscoverMovieCard from "./ui/DiscoverMovieCard";
 import Pagination from "./ui/Pagination";
 
 const Discover = () => {
-  const [movies, setMovies] = useState<moviesModel[]>([]);
+  const [movies, setMovies] = useState<DiscoverMovieModel[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<any>();
   const [page, setPage] = useState<number>(1);
@@ -18,10 +18,9 @@ const Discover = () => {
     setLoading(true);
     setMovies([]);
     setError(null);
-    setMovies([]);
     try {
-      const moviesDate = await fetchDiscoverMovies(abortControllerRef.current, page);
-      setMovies(moviesDate);
+      const movies = await fetchDiscoverMovies(abortControllerRef.current, page);
+      setMovies(movies);
     } catch (error: any) {
       setError(error.message);
       console.log("Error - " + error);
@@ -37,7 +36,7 @@ const Discover = () => {
 
   return (
     <>
-      <div className="w-full flex justify-center items-center mt-36 mb-14">
+      <div className="w-full flex justify-center items-center mt-20 mb-14">
         <h1 className="text-7xl text-red-600 font-bold">Discover Movies</h1>
       </div>
       <div className="flex justify-center h-auto mb-10 px-6 py-6 ">
@@ -50,6 +49,7 @@ const Discover = () => {
               movies?.map((movie, index) => (
                 <DiscoverMovieCard
                   key={movie.id}
+                  id={movie.id}
                   title={movie.original_title}
                   poster_path={movie.poster_path}
                   vote_average={movie.vote_average}

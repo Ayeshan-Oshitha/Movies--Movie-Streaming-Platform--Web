@@ -1,12 +1,20 @@
-import "./App.css";
+import { Route, Routes } from "react-router-dom";
 import Navigation from "./components/Navigation";
 import HomePage from "./pages/HomePage";
+import TemperoryHomePage from "./pages/TemperoryHomePage";
+import MovieDetailsPage from "./pages/MovieDetailsPage";
+import DiscoverMoviesPage from "./pages/DiscoverMoviesPage";
 
 function App() {
   return (
     <>
-      <Navigation />
-      <HomePage />
+      {/* <Navigation /> */}
+      <Routes>
+        <Route path="/" element={<TemperoryHomePage />} />
+        <Route path="/movies" element={<HomePage />} />
+        <Route path="/movies/:id" element={<MovieDetailsPage />} />
+        <Route path="/discoverMovies" element={<DiscoverMoviesPage />} />
+      </Routes>
     </>
   );
 }

@@ -1,4 +1,4 @@
-export interface moviesModel {
+export interface DiscoverMovieModel {
   id: number;
   original_title: string;
   original_language: string;
@@ -8,4 +8,44 @@ export interface moviesModel {
   backdrop_path: string;
   poster_path: string;
   [key: string]: unknown;
+}
+
+export interface MovieModel {
+  id: number;
+  original_title: string;
+  overview: string;
+  backdrop_path: string;
+  poster_path: string;
+  release_date: string;
+  runtime: number;
+  budget: number;
+  revenue: number;
+  vote_average: number;
+  vote_count: number;
+  origin_country: string[];
+  genres: {
+    id: number;
+    name: string;
+  }[];
+  production_companies: {
+    id: number;
+    logo_path: string;
+    name: string;
+    origin_country: string;
+  }[];
+}
+
+export interface MovieReviewsModel {
+  author: string;
+  author_details: {
+    name: string;
+    username: string;
+    avatar_path: string;
+    rating: string | null;
+  };
+  content: string;
+  created_at: string;
+  id: string;
+  updated_at: string;
+  url: string;
 }

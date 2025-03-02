@@ -5,8 +5,7 @@ import NewsLetter from "../components/NewsLetter";
 const HomePage = () => {
   return (
     <>
-      <Hero />
-      <Discover />
+      {/* <Hero /> */}
       <NewsLetter />
     </>
   );
