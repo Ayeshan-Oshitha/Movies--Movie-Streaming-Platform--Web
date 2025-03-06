@@ -1,3 +1,4 @@
+import { NavLink } from "react-router-dom";
 import logo from "../assets/logo.png";
 
 const Navigation = () => {
@@ -7,13 +8,11 @@ const Navigation = () => {
         <img src={logo} alt="logo" className="w-48" />
       </div>
 
-      <div className="col-span-7 lg:col-span-8 flex justify-center items-center">
-        <ul className="flex  gap-8 lg:gap-16 text-sky-600 text-2xl font-semibold text-center">
-          <li>Home</li>
-          <li>Movies</li>
-          <li>TV Shows</li>
-          <li>My List</li>
-        </ul>
+      <div className="col-span-7 lg:col-span-8 flex justify-center items-center gap-8 lg:gap-16 text-sky-600 text-2xl font-semibold text-center">
+        <NavLink to="/">Home</NavLink>
+        <NavLink to="/discoverMovies">Movies</NavLink>
+        <NavLink to="">TV Shows</NavLink>
+        <NavLink to="/temp">Temp</NavLink>
       </div>
 
       <div className="col-span-2 lg:col-span-2 flex justify-center items-center">

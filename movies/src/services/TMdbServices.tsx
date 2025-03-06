@@ -73,3 +73,59 @@ export const fetchMovieReviewsById = async (movieId: number, abortController?: A
     }
   }
 };
+
+export const fetchTrendingMovies = async (abortController?: AbortController) => {
+  try {
+    const res = await fetch(`${BASE_URL}/trending/movie/day?language=en-US`, {
+      headers: {
+        Authorization: `Bearer ${import.meta.env.VITE_TMDB_ACCESS_TOKEN_AUTH}`,
+      },
+      signal: abortController?.signal,
+    });
+
+    if (!res.ok) {
+      const errorData = await res.json().catch(() => ({}));
+      throw new Error(`HTTP Status: ${res.status}` + " " + errorData.status_message || "something wen't wrong");
+    }
+    const data = await res.json();
+    console.log("data result is", data.results);
+    return data.results;
+  } catch (error: any) {
+    if (error.name === "AbortError") {
+      console.log("Aborted");
+      return;
+    }
+    if (error instanceof TypeError && error.message === "Failed to fetch") {
+      throw new Error("No response from the server. Please check your internet connection");
+    }
+    throw new Error(error.message || "Something went wrong");
+  }
+};
+
+export const fetchTrendingTvShows = async (abortController?: AbortController) => {
+  try {
+    const res = await fetch(`${BASE_URL}/trending/tv/day?language=en-US`, {
+      headers: {
+        Authorization: `Bearer ${import.meta.env.VITE_TMDB_ACCESS_TOKEN_AUTH}`,
+      },
+      signal: abortController?.signal,
+    });
+
+    if (!res.ok) {
+      const errorData = await res.json().catch(() => ({}));
+      throw new Error(`HTTP Status: ${res.status}` + " " + errorData.status_message || "something wen't wrong");
+    }
+    const data = await res.json();
+    console.log("Tv show result is", data.results);
+    return data.results;
+  } catch (error: any) {
+    if (error.name === "AbortError") {
+      console.log("Aborted");
+      return;
+    }
+    if (error instanceof TypeError && error.message === "Failed to fetch") {
+      throw new Error("No response from the server. Please check your internet connection");
+    }
+    throw new Error(error.message || "Something went wrong");
+  }
+};

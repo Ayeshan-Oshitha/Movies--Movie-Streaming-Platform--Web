@@ -49,3 +49,25 @@ export interface MovieReviewsModel {
   updated_at: string;
   url: string;
 }
+
+export interface TrendingMovieModel {
+  id: number;
+  original_title: string;
+  original_language: string;
+  overview: string;
+  release_date: string;
+  vote_average: number;
+  backdrop_path: string;
+  poster_path: string;
+}
+
+export interface TrendingTVshowModel {
+  id: number;
+  original_name: string;
+  original_language: string;
+  overview: string;
+  first_air_date: string;
+  vote_average: number;
+  backdrop_path: string;
+  poster_path: string;
+}

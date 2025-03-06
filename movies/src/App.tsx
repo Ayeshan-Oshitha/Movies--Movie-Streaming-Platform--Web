@@ -8,10 +8,10 @@ import DiscoverMoviesPage from "./pages/DiscoverMoviesPage";
 function App() {
   return (
     <>
-      {/* <Navigation /> */}
+      <Navigation />
       <Routes>
-        <Route path="/" element={<TemperoryHomePage />} />
-        <Route path="/movies" element={<HomePage />} />
+        <Route path="/temp" element={<TemperoryHomePage />} />
+        <Route path="/" element={<HomePage />} />
         <Route path="/movies/:id" element={<MovieDetailsPage />} />
         <Route path="/discoverMovies" element={<DiscoverMoviesPage />} />
       </Routes>
