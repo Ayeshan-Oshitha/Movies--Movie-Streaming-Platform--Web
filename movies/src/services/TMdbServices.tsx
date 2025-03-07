@@ -129,3 +129,26 @@ export const fetchTrendingTvShows = async (abortController?: AbortController) =>
     throw new Error(error.message || "Something went wrong");
   }
 };
+
+export const fetchDiscoverTvShows = async (page: number) => {
+  try {
+    const response = await axios(`${BASE_URL}/discover/tv?page=${page}`, {
+      headers: {
+        Authorization: `Bearer ${import.meta.env.VITE_TMDB_ACCESS_TOKEN_AUTH}`,
+      },
+    });
+    return response.data.results;
+  } catch (error: any) {
+    if (axios.isCancel(error)) {
+      console.log("Request aborted");
+      return;
+    }
+    if (error.response) {
+      throw new Error(error.response.data?.status_message || "Something went wrong!");
+    } else if (error.request) {
+      throw new Error("No response from the server. Please check your connection.");
+    } else {
+      throw new Error(error.message);
+    }
+  }
+};

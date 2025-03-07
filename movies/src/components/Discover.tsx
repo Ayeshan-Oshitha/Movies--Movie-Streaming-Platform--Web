@@ -30,8 +30,8 @@ const Discover = () => {
   };
 
   useEffect(() => {
-    fetchMovies();
     window.scrollTo({ top: 0, behavior: "smooth" });
+    fetchMovies();
   }, [page]);
 
   return (

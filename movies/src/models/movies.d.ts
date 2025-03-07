@@ -71,3 +71,14 @@ export interface TrendingTVshowModel {
   backdrop_path: string;
   poster_path: string;
 }
+
+export interface DiscoverTvShowModel {
+  id: number;
+  original_name: string;
+  original_language: string;
+  overview: string;
+  first_air_date: string;
+  vote_average: number;
+  backdrop_path: string;
+  poster_path: string;
+}
