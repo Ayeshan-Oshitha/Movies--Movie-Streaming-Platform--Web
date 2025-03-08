@@ -152,3 +152,27 @@ export const fetchDiscoverTvShows = async (page: number) => {
     }
   }
 };
+
+export const fetchTvShowDetailsById = async (tvShowId: number) => {
+  try {
+    const response = await axios(`${BASE_URL}/tv/${tvShowId}`, {
+      headers: {
+        Authorization: `Bearer ${import.meta.env.VITE_TMDB_ACCESS_TOKEN_AUTH}`,
+      },
+    });
+    console.log(response.data);
+    return response.data;
+  } catch (error: any) {
+    if (axios.isCancel(error)) {
+      console.log("aborted");
+      return;
+    }
+    if (error.response) {
+      throw new Error(error.response.data?.status_message || "Something went wrong!");
+    } else if (error.request) {
+      throw new Error("No response from the server. Please check your connection.");
+    } else {
+      throw new Error(error.message);
+    }
+  }
+};

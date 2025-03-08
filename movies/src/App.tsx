@@ -6,6 +6,7 @@ import TemperoryHomePage from "./pages/TemperoryHomePage";
 import MovieDetailsPage from "./pages/MovieDetailsPage";
 import DiscoverMoviesPage from "./pages/DiscoverMoviesPage";
 import DiscoverTvShowPage from "./pages/DiscoverTvShowPage";
+import TvShowDetailsPage from "./pages/TvShowDetailsPage";
 
 function App() {
   const queryClient = new QueryClient();
@@ -17,6 +18,7 @@ function App() {
           <Route path="/temp" element={<TemperoryHomePage />} />
           <Route path="/" element={<HomePage />} />
           <Route path="/movies/:id" element={<MovieDetailsPage />} />
+          <Route path="/tvShow/:id" element={<TvShowDetailsPage />} />
           <Route path="/discoverMovies" element={<DiscoverMoviesPage />} />
           <Route path="/discoverTvShows" element={<DiscoverTvShowPage />} />
         </Routes>

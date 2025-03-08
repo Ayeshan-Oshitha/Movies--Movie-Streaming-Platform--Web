@@ -82,3 +82,26 @@ export interface DiscoverTvShowModel {
   backdrop_path: string;
   poster_path: string;
 }
+
+export interface TvShowModel {
+  id: number;
+  first_air_date: string;
+  last_air_date: string;
+  original_name: string;
+  overview: string;
+  backdrop_path: string;
+  poster_path: string;
+  vote_average: number;
+  vote_count: number;
+  type: string;
+  genres: {
+    id: number;
+    name: string;
+  }[];
+  production_companies: {
+    id: number;
+    logo_path: string;
+    name: string;
+    origin_country: string;
+  }[];
+}
