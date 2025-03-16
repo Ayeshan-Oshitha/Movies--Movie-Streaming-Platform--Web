@@ -2,11 +2,11 @@ import { Route, Routes } from "react-router-dom";
 import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
 import Navigation from "./components/Navigation";
 import HomePage from "./pages/HomePage";
-import TemperoryHomePage from "./pages/TemperoryHomePage";
 import MovieDetailsPage from "./pages/MovieDetailsPage";
 import DiscoverMoviesPage from "./pages/DiscoverMoviesPage";
 import DiscoverTvShowPage from "./pages/DiscoverTvShowPage";
 import TvShowDetailsPage from "./pages/TvShowDetailsPage";
+import PopularPeoplePage from "./pages/PopularPeoplePage";
 
 function App() {
   const queryClient = new QueryClient();
@@ -15,12 +15,12 @@ function App() {
       <QueryClientProvider client={queryClient}>
         <Navigation />
         <Routes>
-          <Route path="/temp" element={<TemperoryHomePage />} />
           <Route path="/" element={<HomePage />} />
           <Route path="/movies/:id" element={<MovieDetailsPage />} />
           <Route path="/tvShow/:id" element={<TvShowDetailsPage />} />
           <Route path="/discoverMovies" element={<DiscoverMoviesPage />} />
           <Route path="/discoverTvShows" element={<DiscoverTvShowPage />} />
+          <Route path="/people" element={<PopularPeoplePage />} />
         </Routes>
       </QueryClientProvider>
     </>

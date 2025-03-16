@@ -12,7 +12,8 @@ const Navigation = () => {
         <NavLink to="/">Home</NavLink>
         <NavLink to="/discoverMovies">Movies</NavLink>
         <NavLink to="/discoverTvShows">TV Shows</NavLink>
-        <NavLink to="/temp">Temp</NavLink>
+        {/* <NavLink to="/temp">Temp</NavLink> */}
+        <NavLink to="/people">People</NavLink>
       </div>
 
       <div className="col-span-2 lg:col-span-2 flex justify-center items-center">

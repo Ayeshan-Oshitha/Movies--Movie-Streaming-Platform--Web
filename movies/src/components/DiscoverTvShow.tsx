@@ -14,7 +14,7 @@ const DiscoverTvShow = () => {
     error,
   } = useQuery<DiscoverTvShowModel[], Error>({
     queryKey: ["DiscoverTvShows", page],
-    queryFn: () => fetchDiscoverTvShows(page),
+    queryFn: async () => await fetchDiscoverTvShows(page),
   });
 
   // Scroll to top when page changes

@@ -1,10 +1,10 @@
 import React from "react";
-import Discover from "../components/Discover";
+import DiscoverMovies from "../components/DiscoverMovies";
 
 const DiscoverMoviesPage = () => {
   return (
     <div>
-      <Discover />
+      <DiscoverMovies />
     </div>
   );
 };

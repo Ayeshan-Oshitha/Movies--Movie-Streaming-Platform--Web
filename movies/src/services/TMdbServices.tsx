@@ -130,6 +130,7 @@ export const fetchTrendingTvShows = async (abortController?: AbortController) =>
   }
 };
 
+// react query - fetch array of data
 export const fetchDiscoverTvShows = async (page: number) => {
   try {
     const response = await axios(`${BASE_URL}/discover/tv?page=${page}`, {
@@ -153,6 +154,7 @@ export const fetchDiscoverTvShows = async (page: number) => {
   }
 };
 
+// react query - fetch one object
 export const fetchTvShowDetailsById = async (tvShowId: number) => {
   try {
     const response = await axios(`${BASE_URL}/tv/${tvShowId}`, {
@@ -174,5 +176,59 @@ export const fetchTvShowDetailsById = async (tvShowId: number) => {
     } else {
       throw new Error(error.message);
     }
+  }
+};
+
+// normal data fetching - Infinite way (View More Button)
+export const fetchUpcomingMovies = async (page: number, abortController?: AbortController) => {
+  try {
+    const response = await axios(`${BASE_URL}/movie/upcoming?language=en-US&page=${page}`, {
+      headers: {
+        Authorization: `Bearer ${import.meta.env.VITE_TMDB_ACCESS_TOKEN_AUTH}`,
+      },
+      signal: abortController?.signal,
+    });
+    console.log("upcoming", response.data.results);
+    return response.data.results;
+  } catch (error: any) {
+    if (axios.isCancel(error)) {
+      console.log("aborted");
+      return;
+    }
+    if (error.response) {
+      throw new Error(error.response.data?.status_message || "Something went wrong!");
+    } else if (error.request) {
+      throw new Error("No response from the server. Please check your connection.");
+    } else {
+      throw new Error(error.message);
+    }
+  }
+};
+
+// reactQ uery - Infinite way (View More Button)
+export const fetchPopularPeople = async (page: number) => {
+  try {
+    const res = await fetch(`${BASE_URL}/person/popular?language=en-US&page=${page}`, {
+      headers: {
+        Authorization: `Bearer ${import.meta.env.VITE_TMDB_ACCESS_TOKEN_AUTH}`,
+      },
+    });
+
+    if (!res.ok) {
+      const errorData = await res.json().catch(() => ({}));
+      throw new Error(`HTTP Status: ${res.status}` + " " + errorData.status_message || "something wen't wrong");
+    }
+    const data = await res.json();
+    console.log("Peoples are", data.results);
+    return data.results;
+  } catch (error: any) {
+    if (error.name === "AbortError") {
+      console.log("Aborted");
+      return;
+    }
+    if (error instanceof TypeError && error.message === "Failed to fetch") {
+      throw new Error("No response from the server. Please check your internet connection");
+    }
+    throw new Error(error.message || "Something went wrong");
   }
 };

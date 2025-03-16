@@ -4,7 +4,7 @@ import { fetchDiscoverMovies } from "../services/TMdbServices";
 import DiscoverMovieCard from "./ui/DiscoverMovieCard";
 import Pagination from "./ui/Pagination";
 
-const Discover = () => {
+const DiscoverMovies = () => {
   const [movies, setMovies] = useState<DiscoverMovieModel[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<any>();
@@ -69,4 +69,4 @@ const Discover = () => {
   );
 };
 
-export default Discover;
+export default DiscoverMovies;

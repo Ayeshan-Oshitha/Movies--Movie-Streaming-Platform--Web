@@ -105,3 +105,25 @@ export interface TvShowModel {
     origin_country: string;
   }[];
 }
+
+export interface UpcomingMovieModel {
+  id: number;
+  original_title: string;
+  original_language: string;
+  release_date: string;
+  vote_average: number;
+  poster_path: string;
+}
+
+export interface PopularPeopleModel {
+  id: string;
+  name: string;
+  known_for_department: string;
+  popularity: string;
+  profile_path: string;
+  known_for: {
+    id: string;
+    title: string;
+    release_date: string;
+  }[];
+}
