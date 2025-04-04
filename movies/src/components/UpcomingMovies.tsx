@@ -45,7 +45,7 @@ const UpcomingMovies = () => {
         <p className="text-4xl text-red-600 font-medium border-red-600 border-b-4 ">Upcoming Movies</p>
         <div className="flex justify-center h-auto mb-2 px-6 py-6 ">
           {error && <div>Error:{error.message}</div>}
-          <div className="flex flex-row flex-wrap  ">
+          <div className="flex flex-row flex-wrap justify-around  ">
             {!error &&
               (movies?.length > 0 ? (
                 movies?.map((movie, index) => (

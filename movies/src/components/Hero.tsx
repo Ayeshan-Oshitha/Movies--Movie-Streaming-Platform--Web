@@ -12,7 +12,7 @@ const Hero = () => {
             Search Movies
           </button>
         </Link>
-        <Link to="">
+        <Link to="/discoverTvShows">
           <button className="bg-sky-500 px-5 py-3 text-2xl text-white font-medium tracking-wide rounded-lg">
             Search TV Shows
           </button>
