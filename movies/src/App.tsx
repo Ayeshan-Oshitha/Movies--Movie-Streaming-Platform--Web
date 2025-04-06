@@ -10,12 +10,11 @@ import PopularPeoplePage from "./pages/PopularPeoplePage";
 import LoginPage from "./pages/LoginPage";
 import MainLayout from "./layout/MainLayout";
 import RegisterPage from "./pages/RegisterPage";
-import { AuthProvider, useAuth } from "./context/AuthContext";
+import { AuthProvider } from "./context/AuthContext";
 import PrivateRoute from "./layout/PrivateRoute";
 
 function App() {
   const queryClient = new QueryClient();
-  const { user } = useAuth();
 
   return (
     <>
