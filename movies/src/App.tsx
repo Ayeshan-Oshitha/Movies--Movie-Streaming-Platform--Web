@@ -10,26 +10,60 @@ import PopularPeoplePage from "./pages/PopularPeoplePage";
 import LoginPage from "./pages/LoginPage";
 import MainLayout from "./layout/MainLayout";
 import RegisterPage from "./pages/RegisterPage";
+import { AuthProvider, useAuth } from "./context/AuthContext";
+import PrivateRoute from "./layout/PrivateRoute";
 
 function App() {
   const queryClient = new QueryClient();
+  const { user } = useAuth();
+
   return (
     <>
-      <QueryClientProvider client={queryClient}>
-        <Routes>
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/register" element={<RegisterPage />} />
+      <AuthProvider>
+        <QueryClientProvider client={queryClient}>
+          <Routes>
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/register" element={<RegisterPage />} />
 
-          <Route element={<MainLayout />}>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/movies/:id" element={<MovieDetailsPage />} />
-            <Route path="/tvShow/:id" element={<TvShowDetailsPage />} />
-            <Route path="/discoverMovies" element={<DiscoverMoviesPage />} />
-            <Route path="/discoverTvShows" element={<DiscoverTvShowPage />} />
-            <Route path="/people" element={<PopularPeoplePage />} />
-          </Route>
-        </Routes>
-      </QueryClientProvider>
+            <Route element={<MainLayout />}>
+              <Route path="/" element={<HomePage />} />
+              <Route
+                path="/movies/:id"
+                element={
+                  <PrivateRoute>
+                    <MovieDetailsPage />
+                  </PrivateRoute>
+                }
+              />
+              <Route path="/tvShow/:id" element={<TvShowDetailsPage />} />
+              <Route
+                path="/discoverMovies"
+                element={
+                  <PrivateRoute>
+                    <DiscoverMoviesPage />
+                  </PrivateRoute>
+                }
+              />
+              <Route
+                path="/discoverTvShows"
+                element={
+                  <PrivateRoute>
+                    <DiscoverTvShowPage />
+                  </PrivateRoute>
+                }
+              />
+              <Route
+                path="/people"
+                element={
+                  <PrivateRoute>
+                    <PopularPeoplePage />
+                  </PrivateRoute>
+                }
+              />
+            </Route>
+          </Routes>
+        </QueryClientProvider>
+      </AuthProvider>
     </>
   );
 }
